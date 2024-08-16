@@ -1,0 +1,34 @@
+version: "3.7"
+
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - s-network
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+      MYSQL_DB: databaseName
+    ports:
+      - 3306:3306
+    networks:
+      - s-network
+    volumes:
+      - mysql-s-data:/var/lib/mysql/data
+
+  networks:
+    s-network:
+      driver: bridge
+
+
+
+
+
+
+
